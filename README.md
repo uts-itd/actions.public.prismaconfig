@@ -1,5 +1,5 @@
-# iac-check-prisma
-Check for IAC code supported by Prisma IAC scanning, and configure Prisma if found
+# actions.public.prismaconfig
+Check for IAC code supported by Prisma IAC scanning and configure Prisma if found
 
 ## Files in This Template
 
