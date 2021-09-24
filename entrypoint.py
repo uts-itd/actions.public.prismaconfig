@@ -132,7 +132,7 @@ def configure_cfm(code_path):
     copyfile('/prisma-cloud-config.yml', code_path + "/.github/prisma-cloud-config.yml")
 
 
-def git_commit():
+def git_commit(code_path):
     """
     Commit prisma config to git repo
     """
@@ -172,4 +172,4 @@ if __name__ == "__main__" :
     print("Result list")
     print(interesting_files)
 
-    git_commit()
+    git_commit(repo_code_path)
