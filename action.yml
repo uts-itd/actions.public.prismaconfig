@@ -1,0 +1,25 @@
+name: 'configure-prisma-iac-scanning'
+description: 'Looking for existing Terraform or CloudFormation code in a repo and, if found, configures Prisma IAC scanning'
+branding:
+  icon: 'book-open'
+  color: 'green'
+#inputs:
+#  input-one:
+#    description: 'Description of input-one'
+#    required: false
+#    default: 'default value goes here'
+#  input-two:
+#    description: 'Description of input-two'
+#    required: false
+#    default: 'default value goes here'
+#outputs:
+#  output-one:
+#    description: 'Description of output-one'
+#  output-two:
+#    description: 'Description of output-two'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+#  args:
+#    - ${{ inputs.input-one }}
+#    - ${{ inputs.input-two }}
