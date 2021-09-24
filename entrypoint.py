@@ -22,6 +22,14 @@ import sys
 from pathlib import Path
 from shutil import copyfile
 
+def print_dir(target_path):
+    """
+    for debugging
+    """
+
+    output = os.listdir(target_path)
+    print(output)
+
 def set_code_path():
     """
     Set path to checked out code repo
@@ -118,6 +126,11 @@ def configure_tf(is_dummy, path):
     copyfile('/config-tf.yml', code_path +'/.prismaCloud/config.yml')
     copyfile('/prisma-cloud-config.yml', code_path + '/.github/prisma-cloud-config.yml')
 
+    foo = code_path + '/.github/prisma-cloud-config.yml'
+    bar = code_path +'/.prismaCloud/config.yml'
+    print_dir(foo)
+    print_dir(bar)
+
 
 
 def configure_cfm(code_path):
@@ -136,6 +149,8 @@ if __name__ == "__main__" :
     # Fake example outputs
     OUTPUT1= "No IAC found"
     OUTPUT2= "IAC found"
+
+    print_dir("/")
 
     repo_code_path = set_code_path()
     interesting_files = search_for_iac(repo_code_path)
