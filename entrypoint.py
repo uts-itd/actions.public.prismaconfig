@@ -141,7 +141,7 @@ def git_commit():
     echo "Checking current working dir"
     pwd
     ls -lah
-    echo "Configuring git username and email address
+    echo "Configuring git username and email address"
     git config --global user.email "actions.public.prismaconfig@github.com/uts-itd/"
     git config --global user.name "Prisma IAC config GitHub Action"
     echo "Running 'git add'"
