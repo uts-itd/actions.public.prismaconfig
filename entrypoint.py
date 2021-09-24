@@ -22,13 +22,6 @@ import sys
 from pathlib import Path
 from shutil import copyfile
 
-def print_dir(target_path):
-    """
-    for debugging
-    """
-
-    output = os.listdir(target_path)
-    print(output)
 
 def set_code_path():
     """
@@ -38,7 +31,7 @@ def set_code_path():
     try:
         code_path = os.environ['GITHUB_WORKSPACE']
     except KeyError:
-        print("Could not find environment variable GITHUB_WORKSPACE, found" + code_path)
+        print("Could not find environment variable GITHUB_WORKSPACE")
         sys.exit(1)
 
     return code_path
@@ -59,6 +52,7 @@ def search_for_iac(code_path):
                 result.append(os.path.join(root, name))
 
     return result
+
 
 def check_iac_type(targets):
     """
@@ -126,12 +120,6 @@ def configure_tf(is_dummy, path):
     copyfile('/config-tf.yml', code_path +'/.prismaCloud/config.yml')
     copyfile('/prisma-cloud-config.yml', code_path + '/.github/prisma-cloud-config.yml')
 
-    foo = code_path + '/.github/'
-    bar = code_path +'/.prismaCloud/'
-    print_dir(foo)
-    print_dir(bar)
-
-
 
 def configure_cfm(code_path):
     """
@@ -157,24 +145,14 @@ def git_commit():
     git diff --cached
     git commit -m 'Adding prisma IAC scan config'
     git push
+    git log
     ''')
 
     print("Finished git commit")
 
-    os.system('''
-    cd code_path
-    git log
-    ''')
-
 
 
 if __name__ == "__main__" :
-
-    # Fake example outputs
-    OUTPUT1= "No IAC found"
-    OUTPUT2= "IAC found"
-
-    print_dir("/")
 
     repo_code_path = set_code_path()
     interesting_files = search_for_iac(repo_code_path)
@@ -195,8 +173,3 @@ if __name__ == "__main__" :
     print(interesting_files)
 
     git_commit()
-
-    # This is how you produce outputs.
-    # Make sure corresponds to output variable names in action.yml
-    print("::set-output name=output-one::" + OUTPUT1)
-    print("::set-output name=output-two::" + OUTPUT2)
