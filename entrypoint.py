@@ -151,6 +151,8 @@ def git_commit():
 
     os.system('''
     cd code_path
+    git config --global user.email "actions.public.prismaconfig@github.com/uts-itd/"
+    git config --global usern.name "Prisma IAC config GitHub Action"
     git add --all .
     git diff --cached
     git commit -m 'Adding prisma IAC scan config'
