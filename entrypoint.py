@@ -141,12 +141,17 @@ def git_commit():
     echo "Checking current working dir"
     pwd
     ls -lah
+    echo "Configuring git username and email address
     git config --global user.email "actions.public.prismaconfig@github.com/uts-itd/"
     git config --global user.name "Prisma IAC config GitHub Action"
+    echo "Running 'git add'"
     git add --all .
     git diff --cached
+    echo "Commiting changes..."
     git commit -m 'Adding prisma IAC scan config'
+    echo "Pushing changes..."
     git push
+    echo "Show git log (may truncate)"
     git log
     ''')
 
