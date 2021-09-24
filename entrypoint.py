@@ -144,6 +144,28 @@ def configure_cfm(code_path):
     copyfile('/prisma-cloud-config.yml', code_path + "/.github/prisma-cloud-config.yml")
 
 
+def git_commit():
+    """
+    Commit prisma config to git repo
+    """
+
+    os.system('''
+    cd code_path
+    git add --all .
+    git diff --cached
+    git commit -m 'Adding prisma IAC scan config'
+    git push
+    ''')
+
+    print("Finished git commit")
+
+    os.system('''
+    cd code_path
+    git log
+    ''')
+
+
+
 if __name__ == "__main__" :
 
     # Fake example outputs
@@ -169,6 +191,8 @@ if __name__ == "__main__" :
 
     print("Result list")
     print(interesting_files)
+
+    git_commit()
 
     # This is how you produce outputs.
     # Make sure corresponds to output variable names in action.yml
