@@ -137,8 +137,11 @@ def git_commit(code_path):
     Commit prisma config to git repo
     """
 
+    repo_path = code_path
+
     os.system('''
-    cd code_path
+    ls -lah repo_path
+    cd repo_path
     git config --global user.email "actions.public.prismaconfig@github.com/uts-itd/"
     git config --global usern.name "Prisma IAC config GitHub Action"
     git add --all .
