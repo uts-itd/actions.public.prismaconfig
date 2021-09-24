@@ -155,8 +155,6 @@ def git_commit():
     git log
     ''')
 
-    print("Finished git commit")
-
 
 
 if __name__ == "__main__" :
