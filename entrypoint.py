@@ -174,4 +174,4 @@ if __name__ == "__main__" :
     print("Result list")
     print(interesting_files)
 
-    git_commit(repo_code_path)
+    git_commit()
