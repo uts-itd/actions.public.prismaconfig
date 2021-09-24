@@ -27,6 +27,3 @@ github_asset_name: "Github Repo - Generic (replace me in .prismaCloud/config.yml
 # Define tags
 tags:
 - enable_prisma:true
-- owner:cet
-- org:uts-itd
-- env:all
