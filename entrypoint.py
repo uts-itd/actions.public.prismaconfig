@@ -126,8 +126,8 @@ def configure_tf(is_dummy, path):
     copyfile('/config-tf.yml', code_path +'/.prismaCloud/config.yml')
     copyfile('/prisma-cloud-config.yml', code_path + '/.github/prisma-cloud-config.yml')
 
-    foo = code_path + '/.github/prisma-cloud-config.yml'
-    bar = code_path +'/.prismaCloud/config.yml'
+    foo = code_path + '/.github/'
+    bar = code_path +'/.prismaCloud/'
     print_dir(foo)
     print_dir(bar)
 
