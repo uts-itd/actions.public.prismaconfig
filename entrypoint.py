@@ -115,8 +115,8 @@ def configure_tf(is_dummy, path):
             os.remove(code_path + "/dummy.tf")
         print("Configuring for TF")
 
-    copyfile('prisma/config-tf.yml', code_path +'/.prismaCloud/config.yml')
-    copyfile('prisma/prisma-cloud-config.yml', code_path + '/.github/prisma-cloud-config.yml')
+    copyfile('/config-tf.yml', code_path +'/.prismaCloud/config.yml')
+    copyfile('/prisma-cloud-config.yml', code_path + '/.github/prisma-cloud-config.yml')
 
 
 
@@ -127,8 +127,8 @@ def configure_cfm(code_path):
 
     print("Configuring for CFM")
 
-    copyfile('prisma/config-cfm.yml', code_path + "/.prismaCloud/config.yml")
-    copyfile('prisma/prisma-cloud-config.yml', code_path + "/.github/prisma-cloud-config.yml")
+    copyfile('/config-cfm.yml', code_path + "/.prismaCloud/config.yml")
+    copyfile('/prisma-cloud-config.yml', code_path + "/.github/prisma-cloud-config.yml")
 
 
 if __name__ == "__main__" :
