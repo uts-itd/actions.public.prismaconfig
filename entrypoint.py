@@ -132,18 +132,17 @@ def configure_cfm(code_path):
     copyfile('/prisma-cloud-config.yml', code_path + "/.github/prisma-cloud-config.yml")
 
 
-def git_commit(code_path):
+def git_commit():
     """
     Commit prisma config to git repo
     """
 
-    repo_path = code_path
-
     os.system('''
-    ls -lah repo_path
-    cd repo_path
+    echo "Checking current working dir"
+    pwd
+    ls -lah
     git config --global user.email "actions.public.prismaconfig@github.com/uts-itd/"
-    git config --global usern.name "Prisma IAC config GitHub Action"
+    git config --global user.name "Prisma IAC config GitHub Action"
     git add --all .
     git diff --cached
     git commit -m 'Adding prisma IAC scan config'
