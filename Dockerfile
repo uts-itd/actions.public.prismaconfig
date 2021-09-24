@@ -12,7 +12,7 @@
 FROM ghcr.io/cicirello/pyaction:4
 # FROM ghcr.io/cicirello/pyaction:3
 
-ADD prisma /prisma
+COPY prisma /prisma
 
 COPY entrypoint.py /entrypoint.py
 ENTRYPOINT ["/entrypoint.py"]
