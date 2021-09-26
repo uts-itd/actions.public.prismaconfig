@@ -37,6 +37,16 @@ def set_code_path():
     return code_path
 
 
+def check_existing_config(code_path):
+    """
+    Look for any pre-existing prisma config
+    """
+
+    existing_config = bool(os.path.isfile(code_path +'/.prismaCloud/config.yml') or os.path.isfile(code_path + "/.github/prisma-cloud-config.yml"))
+
+    return existing_config
+
+
 def search_for_iac(code_path):
     """
     Check for presence of TF or CFM IAC files
@@ -156,10 +166,18 @@ def git_commit():
     ''')
 
 
-
-if __name__ == "__main__" :
+def main():
+    """
+    Main
+    """
 
     repo_code_path = set_code_path()
+    existing_prisma_config = check_existing_config(repo_code_path)
+
+    if existing_prisma_config:
+        print("Pre-existing Prisma IAC scan config found, exiting")
+        sys.exit(0)
+
     interesting_files = search_for_iac(repo_code_path)
     scan_type = check_iac_type(interesting_files)
 
@@ -178,3 +196,8 @@ if __name__ == "__main__" :
     print(interesting_files)
 
     git_commit()
+
+
+
+if __name__ == "__main__" :
+    main()
