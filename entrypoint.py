@@ -44,6 +44,10 @@ def check_existing_config(code_path):
 
     existing_config = bool(os.path.isfile(code_path +'/.prismaCloud/config.yml') or os.path.isfile(code_path + "/.github/prisma-cloud-config.yml"))
 
+    if existing_config and bool(os.path.isfile(code_path + '/dummy.tf') # if we have existing config and dummy.tf we need to scan for IAC
+        # If we have existing config *and* a dummy.tf file we still need to scan for IAC
+        existing_config = False
+
     return existing_config
 
 
@@ -73,10 +77,10 @@ def check_iac_type(targets):
     count_cfm= 0
 
     for target in targets:
-        if target.lower().endswith("tf"):
+        if target.lower().endswith(".tf"):
             count_tf += 1
 
-        if target.lower().endswith(('json','yaml','yml')):
+        if target.lower().endswith(('.json','.yaml','.yml')):
             with io.open(target, encoding="utf-8") as file:
                 if "AWSTemplateFormatVersion" in file.read():
                     count_cfm += 1
