@@ -148,6 +148,11 @@ def configure_cfm(code_path):
 
     print("Configuring for CFM")
 
+    if os.path.exists(code_path + "/dummy.tf"):
+        # Real CFM IAC content has been found where there previous was none.
+        # Remove the dummy file.
+        os.remove(code_path + "/dummy.tf")
+
     copyfile('/config-cfm.yml', code_path + "/.prismaCloud/config.yml")
     copyfile('/prisma-cloud-config.yml', code_path + "/.github/prisma-cloud-config.yml")
 
