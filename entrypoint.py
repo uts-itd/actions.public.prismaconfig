@@ -42,9 +42,10 @@ def check_existing_config(code_path):
     Look for any pre-existing prisma config
     """
 
-    existing_config = bool(os.path.isfile(code_path +'/.prismaCloud/config.yml') or os.path.isfile(code_path + "/.github/prisma-cloud-config.yml"))
+    existing_config = bool(os.path.isfile(code_path +'/.prismaCloud/config.yml') or
+                           os.path.isfile(code_path + "/.github/prisma-cloud-config.yml"))
 
-    if existing_config and bool(os.path.isfile(code_path + '/dummy.tf') # if we have existing config and dummy.tf we need to scan for IAC
+    if existing_config and bool(os.path.isfile(code_path + '/dummy.tf')):
         # If we have existing config *and* a dummy.tf file we still need to scan for IAC
         existing_config = False
 
@@ -60,7 +61,7 @@ def search_for_iac(code_path):
     supported_files = ("tf", "yml", "yaml", "json")
     result = []
 
-    for root, dirs, files in os.walk(code_path):
+    for root, _, files in os.walk(code_path):
         for name in files:
             if name.lower().endswith(tuple(supported_files)):
                 result.append(os.path.join(root, name))
