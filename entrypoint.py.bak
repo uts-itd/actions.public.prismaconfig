@@ -87,23 +87,28 @@ def check_iac_type(targets, code_path):
                     count_cfm += 1
 
     if count_tf > 0 and count_cfm > 0 and not os.path.isfile(code_path + '/dummy.tf'):
-        print("CFM and TF in the same repo. Run away, run away!")
+        print("Oh no! We have CFM and TF in the same repo. Run away, run away!")
         sys.exit(1)
-    elif count_tf > 1 and count_cfm > 0 and os.path.isfile(code_path + '/dummy.tf'):
-        print("CFM and TF in the same repo after having none before ")
+
+    if count_tf > 1 and count_cfm > 0 and os.path.isfile(code_path + '/dummy.tf'):
+        print("Oh no! We have CFM and TF in the same repo after having none before ")
         print("as evidenced by file 'dummy.tf'. Run away, run away!")
         sys.exit(1)
-    elif count_tf == 0 and count_cfm == 0:
+
+    if count_tf == 0 and count_cfm == 0:
         iac_type = "none"
-    elif count_tf == 1 and count_cfm > 0 and os.path.isfile(code_path + '/dummy.tf'):
+
+    if count_tf == 1 and count_cfm > 0 and os.path.isfile(code_path + '/dummy.tf'):
         # CFM now present where nothing was present on previous scans, hence dummy.tf
         iac_type = "cfm"
-    elif count_tf > 0 and count_cfm == 0:
+
+
+
+    if count_tf > 0:
         iac_type = "tf"
-    elif count_cfm > 0 and count_tf == 0:
+
+    if count_cfm > 0:
         iac_type = "cfm"
-    else:
-        iac_type = "none"
 
     return iac_type
 
